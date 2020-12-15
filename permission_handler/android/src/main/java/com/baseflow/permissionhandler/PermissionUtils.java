@@ -272,6 +272,14 @@ public class PermissionUtils {
         return PermissionUtils.neverAskAgainSelected(activity, name);
     }
 
+    static boolean isAllowThisTimeSelected(final Activity activity, final String name) {
+        if (activity == null) {
+            return false;
+        }
+
+        return hasRequestedPermissionBefore && ActivityCompat.shouldShowRequestPermissionRationale(activity, permission);
+    }
+
   @RequiresApi(api = Build.VERSION_CODES.M)
   static boolean neverAskAgainSelected(final Activity activity, final String permission) {
     final boolean hasRequestedPermissionBefore = getRequestedPermissionBefore(activity, permission);

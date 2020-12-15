@@ -196,7 +196,7 @@ final class PermissionManager {
                 }
                 final int permissionStatus = ContextCompat.checkSelfPermission(context, name);
                 if (permissionStatus == PackageManager.PERMISSION_DENIED) {
-                    if (!PermissionUtils.getRequestedPermissionBefore(context, name)) {
+                    if (!PermissionUtils.getRequestedPermissionBefore(context, name) || PermissionUtils.isAllowThisTimeSelected) {
                         return PermissionConstants.PERMISSION_STATUS_NOT_DETERMINED;
                     } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
                             PermissionUtils.isNeverAskAgainSelected(activity, name)) {
